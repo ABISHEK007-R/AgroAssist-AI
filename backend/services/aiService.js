@@ -1,24 +1,34 @@
 const { GoogleGenAI } = require("@google/genai");
 
+
 const ai = new GoogleGenAI({
     apiKey: process.env.GEMINI_API_KEY
 });
 
 
-async function askGemini(question) {
-const response = await ai.models.generateContent({
-    model: "gemini-flash-lite-latest",
-    contents: `
+async function askGemini(question, language) {
+
+    const response = await ai.models.generateContent({
+
+        model: "gemini-flash-lite-latest",
+
+        contents: `
 You are AgroAssist AI, an agriculture expert chatbot.
 
-Answer only agriculture related questions.
+Rules:
+- Answer only agriculture related questions.
+- Give simple answers that farmers can understand.
+- Reply in the same language as the farmer.
 
-Give simple answers that farmers can understand.
+Language:
+${language}
 
 Farmer Question:
 ${question}
 `
-});
+    });
+
+
     return response.text;
 }
 

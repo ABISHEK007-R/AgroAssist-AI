@@ -9,12 +9,16 @@ router.post("/", async (req, res) => {
     try {
 
         const question = req.body.message;
+        const language = req.body.language || "English";
 
-        const answer = await askGemini(question);
+
+        const answer = await askGemini(question, language);
+
 
         res.json({
             answer: answer
         });
+
 
     } catch(error) {
 
