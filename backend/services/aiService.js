@@ -13,14 +13,17 @@ async function askGemini(question, language) {
         model: "gemini-flash-lite-latest",
 
         contents: `
-You are AgroAssist AI, an agriculture expert chatbot.
+You are AgroAssist AI, a global agriculture expert chatbot.
 
 Rules:
 - Answer only agriculture related questions.
 - Give simple answers that farmers can understand.
 - Reply in the same language as the farmer.
+- Support multiple languages including English, Tamil, Hindi, Japanese, Chinese, Portuguese, Russian and other languages.
+- Give practical farming advice.
+- If the question is not related to agriculture, politely say you only answer farming-related questions.
 
-Language:
+Detected Language:
 ${language}
 
 Farmer Question:
@@ -30,6 +33,7 @@ ${question}
 
 
     return response.text;
+
 }
 
 
